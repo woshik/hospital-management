@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title><%=title%> || <%=info.appName%></title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="Login page of appgenbd." />
+	<meta name="keywords" content="appgenbd, app server, pro app server, bdapp" />
+	<meta name="author" content="Hyper Queue" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="csrf-token" content="<%=csrfToken%>" />
+	<link rel="stylesheet" type="text/css" href="/common/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/auth/css/main.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/custom.css" />
+</head>
+
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form action="<%=loginFormURL%>" method="POST" class="login100-form" id="loginForm">
+					<span class="login100-form-title p-b-14">
+						Welcome
+					</span>
+					<span class="login100-form-title p-b-34">
+						<%=title%>
+					</span>
+					<% if (flashMessage) { %>
+					<div class="alert alert-info" id="flashMessage" role="alert" style="width: 100%;">
+						<%=flashMessage%>
+					</div>
+					<% } %>
+					<div id="message" style="width: 100%"></div>
+					<div class="wrap-input100 rs1-wrap-input100 m-b-20" data-validate="Type email">
+						<input id="first-name" class="input100" type="text" name="email" placeholder="Email"
+							autocomplete="off" />
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 rs2-wrap-input100 m-b-20" data-validate="Type password">
+						<input class="input100" type="password" name="password" placeholder="Password"
+							autocomplete="off" />
+						<span class="focus-input100"></span>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id="buttonload">
+							Sign in
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="copyright py-xl-3 py-2 text-center">
+				<a href="<%=info.websiteURL%>" target="_blank" rel="noreferrer" alt="<%=info.appName%>"><%=info.appName%></a> | <p>Copyright &copy; <%=info.currentYear%> All Rights Reserved.</p>
+			</div>
+		</div>
+	</div>
+	<script src="/common/js/jquery-3.4.1.min.js"></script>
+	<script src="/js/auth/login.js"></script>
+</body>
+
+</html>
