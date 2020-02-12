@@ -4,7 +4,7 @@ const { compare } = require("bcryptjs");
 const { ObjectId } = require("mongodb");
 const { getDB } = require(join(BASE_DIR, "db", "database"));
 
-exports.user = (email, password) => {
+exports.hospital = (email, password) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let user = await getDB()

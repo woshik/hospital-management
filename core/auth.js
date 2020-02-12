@@ -2,17 +2,17 @@
 
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
-const { user, login } = require(join(MODEL_DIR, "login/Model_Login"));
+const { hospital, login } = require(join(MODEL_DIR, "login/Model_Login"));
 
 module.exports = app => {
 	passport.use(
-		"user",
+		"hospital",
 		new localStrategy(
 			{
 				usernameField: "email"
 			},
 			(email, password, done) => {
-				user(email, password)
+				hospital(email, password)
 					.then(({ success, info }) => {
 						if (success) {
 							return done(null, info);

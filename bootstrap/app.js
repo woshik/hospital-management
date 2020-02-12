@@ -69,7 +69,7 @@ app.use("/", require(join(BASE_DIR, "routes", "web")));
 
 // 404 page not found
 app.use((req, res) =>
-	res.status(404).render("error/page", {
+	res.status(404).render("error-page/template", {
 		status: 404,
 		appName: process.env.APP_NAME
 	})
@@ -79,7 +79,7 @@ app.use((req, res) =>
 app.use((err, req, res, next) => {
 	console.log(err);
 	logger.error(err);
-	return res.status(500).render("error/page", {
+	return res.status(500).render("error-page/template", {
 		status: 500,
 		appName: process.env.APP_NAME
 	});

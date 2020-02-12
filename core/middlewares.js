@@ -10,7 +10,7 @@ exports.isAuthenticated = (req, res, next) => {
 
 exports.CanNotAccessAfterLogin = (req, res, next) => {
 	if (req.isAuthenticated()) {
-		return res.redirect(`/dashboard`);
+		return res.redirect("/dashboard");
 	} else {
 		return next();
 	}

@@ -3,9 +3,14 @@
 const { isAuthenticated, CanNotAccessAfterLogin } = require(join(BASE_DIR, "core", "middlewares"));
 
 module.exports = {
-	userLogin: {
+
+	//=====================================================================================================================================//
+	//=========================================================== Hospital ===============================================================//
+	//===================================================================================================================================//
+
+	hospitalLogin: {
 		url: "/login",
-		controller: "User",
+		controller: "Hospital",
 		methods: {
 			loginView: "get",
 			login: "post"
@@ -14,29 +19,27 @@ module.exports = {
 		path: "login"
 	},
 
-	//=====================================================================================================================================//
-	//======================================================== Hospital Dashboard ========================================================//
-	//===================================================================================================================================//
+	hospitalLogout: {
+		url: "/logout",
+		controller: "Hospital",
+		methods: {
+			logout: "get"
+		},
+		middleware: [isAuthenticated],
+		path: "login"
+	},
 
-	userDashboard: {
+	hospitalDashboard: {
 		url: "/dashboard",
 		controller: "Dashboard",
 		methods: {
 			dashboardView: "get"
 		},
 		middleware: [isAuthenticated],
-		path: "Dashboard"
+		path: "hospital"
 	},
 
-	// userLogout: {
-	// 	url: "/user/logout",
-	// 	controller: "Dashboard",
-	// 	methods: {
-	// 		userLogout: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	
 
 	// userProfileSetting: {
 	// 	url: "/user/profile-setting",
