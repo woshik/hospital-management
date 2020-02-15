@@ -2,16 +2,15 @@
 
 const { compare } = require("bcryptjs");
 const { ObjectId } = require("mongodb");
-const { getDB } = require(join(BASE_DIR, "db", "database"));
 
-exports.hospital = (email, password) => {
+exports.hospital = (username, password) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			let user = await getDB()
 				.collection("users")
 				.findOne(
 					{
-						email: email
+						username: username
 					},
 					{
 						projection: {
@@ -55,8 +54,9 @@ exports.login = id => {
 					},
 					{
 						projection: {
-							name: 1,
-							number: 1,
+							f_name: 1,
+							l_name: 1,
+							username: 1,
 							email: 1,
 							role: 1
 						}

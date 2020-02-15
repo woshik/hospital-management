@@ -1,15 +1,18 @@
-const Joi = require("@hapi/joi");
-const web = require(join(BASE_DIR, "urlconf", "webRule"));
-const { fromErrorMessage } = require(join(
-    BASE_DIR,
-    "core",
-    "util"
-));
-
 exports.dashboardView = (req, res, next) => {
-    res.render("hospital/base-template", {
-        info: appInfo,
-        title: "Dasboard",
-        csrfToken: req.csrfToken(),
+	res.render("hospital/base-template", {
+		info: appInfo,
+		title: "Dasboard",
+		layout: "dashboard",
+		userData: req.user,
+        currentURL: req.url,
+        sidebar: sideBar.hospital,
+		csrfToken: req.csrfToken(),
+		logoutURL: web.logout.url
 	});
-}
+};
+
+exports.profileView = (req, res, next) => {
+};
+
+exports.profile = (req, res, next) => {
+};

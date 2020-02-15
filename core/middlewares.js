@@ -4,13 +4,13 @@ exports.isAuthenticated = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
 	} else {
-		return res.redirect("/login");
+		return res.redirect(web.login.url);
 	}
 };
 
 exports.CanNotAccessAfterLogin = (req, res, next) => {
 	if (req.isAuthenticated()) {
-		return res.redirect("/dashboard");
+		return res.redirect(web.dashboardView.url);
 	} else {
 		return next();
 	}

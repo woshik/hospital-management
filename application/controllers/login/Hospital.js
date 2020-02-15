@@ -1,27 +1,23 @@
 "use strict";
 
 const passport = require("passport");
-const Joi = require("@hapi/joi");
-const web = require(join(BASE_DIR, "urlconf", "webRule"));
-const { fromErrorMessage } = require(join(BASE_DIR, "core", "util"));
 
 exports.loginView = (req, res) => {
 	res.render("login/hospital", {
 		info: appInfo,
 		title: "Hospital Login",
 		csrfToken: req.csrfToken(),
-		loginFormURL: web.hospitalLogin.url,
+		loginFormURL: web.login.url,
 		flashMessage: req.flash("loginPageMessage")
 	});
 };
 
 exports.login = (req, res, next) => {
 	const schema = Joi.object({
-		email: Joi.string()
+		username: Joi.string()
 			.trim()
-			.email()
 			.required()
-			.label("Email address"),
+			.label("Username"),
 		password: Joi.string()
 			.trim()
 			.min(5)
@@ -30,7 +26,7 @@ exports.login = (req, res, next) => {
 	});
 
 	const validateResult = schema.validate({
-		email: req.body.email,
+		username: req.body.username,
 		password: req.body.password
 	});
 
@@ -56,7 +52,7 @@ exports.login = (req, res, next) => {
 				} else {
 					return res.json({
 						success: true,
-						message: web.hospitalDashboard.url
+						message: web.dashboardView.url
 					});
 				}
 			});
@@ -67,5 +63,5 @@ exports.login = (req, res, next) => {
 exports.logout = (req, res) => {
 	req.logout();
 	req.flash("loginPageMessage", "Successfully Logout");
-	res.redirect(web.hospitalLogin.url);
+	res.redirect(web.login.url);
 };

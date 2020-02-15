@@ -9,10 +9,10 @@ module.exports = app => {
 		"hospital",
 		new localStrategy(
 			{
-				usernameField: "email"
+				usernameField: "username"
 			},
-			(email, password, done) => {
-				hospital(email, password)
+			(username, password, done) => {
+				hospital(username, password)
 					.then(({ success, info }) => {
 						if (success) {
 							return done(null, info);

@@ -1,227 +1,177 @@
 "use strict";
 
-const { isAuthenticated, CanNotAccessAfterLogin } = require(join(BASE_DIR, "core", "middlewares"));
+const { isAuthenticated, CanNotAccessAfterLogin } = require(join(
+	BASE_DIR,
+	"core",
+	"middlewares"
+));
 
 module.exports = {
-
 	//=====================================================================================================================================//
 	//=========================================================== Hospital ===============================================================//
 	//===================================================================================================================================//
 
-	hospitalLogin: {
-		url: "/login",
+	loginView: {
+		url: "/hospital/login",
 		controller: "Hospital",
-		methods: {
-			loginView: "get",
-			login: "post"
-		},
+		method: "get",
 		middleware: [CanNotAccessAfterLogin],
 		path: "login"
 	},
 
-	hospitalLogout: {
-		url: "/logout",
+	login: {
+		url: "/hospital/login",
 		controller: "Hospital",
-		methods: {
-			logout: "get"
-		},
+		method: "post",
+		middleware: [CanNotAccessAfterLogin],
+		path: "login"
+	},
+
+	logout: {
+		url: "/hospital/logout",
+		controller: "Hospital",
+		method: "post",
 		middleware: [isAuthenticated],
 		path: "login"
 	},
 
-	hospitalDashboard: {
-		url: "/dashboard",
+	dashboardView: {
+		url: "/hospital/dashboard",
 		controller: "Dashboard",
-		methods: {
-			dashboardView: "get"
-		},
+		method: "get",
 		middleware: [isAuthenticated],
 		path: "hospital"
 	},
 
-	
+	profileView: {
+		url: "/hospital/user/profile",
+		controller: "Dashboard",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// userProfileSetting: {
-	// 	url: "/user/profile-setting",
-	// 	controller: "Dashboard",
-	// 	methods: {
-	// 		userProfileSetting: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	profile: {
+		url: "/hospital/user/profile",
+		controller: "Dashboard",
+		method: "post",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// installAppView: {
-	// 	url: "/user/install-app",
-	// 	controller: "InstallApp",
-	// 	methods: {
-	// 		installAppView: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	//===========================================================================================================================================//
+	//===========================================================================================================================================//
+	//=========================================================== User Management ===============================================================//
+	viewUser: {
+		url: "/hospital/users",
+		controller: "UserManagement",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// installApp: {
-	// 	url: "/user/install-app",
-	// 	controller: "InstallApp",
-	// 	methods: {
-	// 		installApp: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated, trialUserCanAccess, userAccountLimitIsAvailable],
-	// 	path: "user"
-	// },
+	addUserView: {
+		url: "/hospital/users/add",
+		controller: "UserManagement",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// appName: {
-	// 	url: "/user/app-name",
-	// 	controller: "InstallApp",
-	// 	methods: {
-	// 		appName: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated, trialUserCanAccess, userAccountLimitIsAvailable],
-	// 	path: "user"
-	// },
+	addUser: {
+		url: "/hospital/users",
+		controller: "UserManagement",
+		method: "post",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// appListView: {
-	// 	url: "/user/app-list",
-	// 	controller: "AppList",
-	// 	methods: {
-	// 		appListView: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	updateUserView: {
+		url: "/hospital/users/update",
+		controller: "UserManagement",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// appListGet: {
-	// 	url: "/user/app-list/get",
-	// 	controller: "AppList",
-	// 	methods: {
-	// 		appList: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	updateUser: {
+		url: "/hospital/users",
+		controller: "UserManagement",
+		method: "put",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// appdetails: {
-	// 	url: "/user/app-details",
-	// 	controller: "AppDetails",
-	// 	methods: {
-	// 		appDetailsView: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	deleteUser: {
+		url: "/hospital/users",
+		controller: "UserManagement",
+		method: "delete",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// appMessageContent: {
-	// 	url: "/user/app-message-content",
-	// 	controller: "AppDetails",
-	// 	methods: {
-	// 		getAppMessageContent: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	//=========================================================== User Management ===============================================================//
+	//===========================================================================================================================================//
+	//===========================================================================================================================================//
+	//=========================================================== Role Management ===============================================================//
 
-	// appdInfoUpdate: {
-	// 	url: "/user/app-update",
-	// 	controller: "AppList",
-	// 	methods: {
-	// 		appUpdate: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	viewRole: {
+		url: "/hospital/role",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// appStatusChange: {
-	// 	url: "/user/app-status-change",
-	// 	controller: "AppList",
-	// 	methods: {
-	// 		appStatusChange: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated, trialUserCanAccess, userAccountLimitIsAvailable],
-	// 	path: "user"
-	// },
+	viewRoleData: {
+		url: "/hospital/role/data",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// deleteApp: {
-	// 	url: "/user/delete-app",
-	// 	controller: "AppList",
-	// 	methods: {
-	// 		deleteApp: "delete"
-	// 	},
-	// 	middleware: [isUserAuthenticated, trialUserCanAccess, userAccountLimitIsAvailable],
-	// 	path: "user"
-	// },
+	addRoleView: {
+		url: "/hospital/role/add",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// contentUploadView: {
-	// 	url: "/user/content-upload",
-	// 	controller: "ContentUpload",
-	// 	methods: {
-	// 		contentUploadView: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	addRole: {
+		url: "/hospital/role",
+		controller: "RoleManagement",
+		method: "post",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// contentUpload: {
-	// 	url: "/user/content-upload",
-	// 	controller: "ContentUpload",
-	// 	methods: {
-	// 		contentUpload: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated, trialUserCanAccess, userAccountLimitIsAvailable],
-	// 	path: "user"
-	// },
+	updateRoleView: {
+		url: "/hospital/role/update",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// getContent: {
-	// 	url: "/user/get-content",
-	// 	controller: "AppDetails",
-	// 	methods: {
-	// 		getContent: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
+	updateRole: {
+		url: "/hospital/role",
+		controller: "RoleManagement",
+		method: "put",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	},
 
-	// updateContent: {
-	// 	url: "/user/update-content",
-	// 	controller: "AppDetails",
-	// 	methods: {
-	// 		updateContent: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated, trialUserCanAccess, userAccountLimitIsAvailable],
-	// 	path: "user"
-	// },
+	removeRole: {
+		url: "/hospital/role",
+		controller: "RoleManagement",
+		method: "delete",
+		middleware: [isAuthenticated],
+		path: "hospital"
+	}
 
-	// applicationGeneratorView: {
-	// 	url: "/user/application-generator",
-	// 	controller: "ApplicationGenerator",
-	// 	methods: {
-	// 		applicationGeneratorView: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
-
-	// applicationGenerator: {
-	// 	url: "/user/application-generator",
-	// 	controller: "ApplicationGenerator",
-	// 	methods: {
-	// 		applicationGenerator: "post"
-	// 	},
-	// 	middleware: [isUserAuthenticated, trialUserCanAccess, userAccountLimitIsAvailable],
-	// 	path: "user"
-	// },
-
-	// download: {
-	// 	url: "/user/application-generator/download",
-	// 	controller: "ApplicationGenerator",
-	// 	methods: {
-	// 		download: "get"
-	// 	},
-	// 	middleware: [isUserAuthenticated],
-	// 	path: "user"
-	// },
-
-	//=====================================================================================================================================//
-	//============================================================== Admin URL ===========================================================//
-	//===================================================================================================================================//
+	//=========================================================== Role Management ===============================================================//
+	//===========================================================================================================================================//
+	//===========================================================================================================================================//
 };

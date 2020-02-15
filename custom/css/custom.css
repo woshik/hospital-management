@@ -1,63 +1,45 @@
-#sectionHidden {
-	display: none;
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active,
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:focus,
+[class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link.active:hover {
+	background-color: #007bff;
+	color: #fff;
 }
 
-table th,
-td {
+.main-header .navbar-nav .nav-item .dropdown-menu .profile-head {
+	height: 110px;
+    padding: 10px;
 	text-align: center;
+	background-color: #3c8dbc;
 }
 
-.fas,
-.far {
-	font-size: 17px;
+.main-header .navbar-nav .nav-item .dropdown-menu .profile-footer {
+	background-color: #f9f9f9;
+    padding: 10px;
+}
+.main-header .navbar-nav .nav-item .dropdown-menu .profile-head > p {
+    z-index: 5;
+    color: #fff;
+    color: rgba(255,255,255,0.8);
+    font-size: 17px;
+    margin-top: 20px;
 }
 
-.custom-block {
-	border-radius: 14px;
-	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+.pull-left {
+    float: left!important;
 }
 
-.block-1 {
-	background: #fc3158;
+.pull-right {
+    float: right!important;
 }
 
-.block-2 {
-	background: #10ac84;
+.copyright a {
+    color: #c7c7c7;
 }
 
-.block-3 {
-	background: #2a2727;
+.copyright a:hover {
+    color: #00ad5f;
 }
 
-.block-4 {
-	background: #ff9f43;
-}
-
-.block-5 {
-	background: #2980b9;
-}
-
-.block-6 {
-	background: #5d3f6a;
-}
-
-.btn-icon {
-	margin: 2px;
-}
-
-.correct {
-	color: #27ae60;
-}
-
-.wrong {
-	color: #c0392b;
-}
-
-#formField .form-row .form-group .dateTimepicker {
-	background-color: #fff !important;
-}
-
-div.alert {
-	text-align: center;
-	border-radius: 150px;
+.copyright p {
+    cursor: default;
 }

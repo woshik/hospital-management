@@ -13,25 +13,30 @@ const { logger } = require(join(BASE_DIR, "core/util"));
 const auth = require(join(BASE_DIR, "core/auth"));
 const { flash } = require(join(BASE_DIR, "core/middlewares"));
 
-// calling express function
-const app = express();
-
-// global information declaration
+// global declaration
 global.appInfo = {
 	appName: process.env.APP_NAME,
 	currentYear: new Date().getUTCFullYear(),
 	websiteURL: process.env.WEBSITE_URL
-}
+};
+global.web = require(join(BASE_DIR, "urlconf/webRule"));
+global.sideBar = require(join(BASE_DIR, "urlconf/sideBar"));
+global.Joi = require("@hapi/joi");
+global.fromErrorMessage = require(join(BASE_DIR, "core/util")).fromErrorMessage;
+global.getDB = require(join(BASE_DIR, "db/database")).getDB;
+
+// calling express function
+const app = express();
 
 // node js process error handle
 process.on("uncaughtException", err => {
-	console.log(err)
-	logger.error({label: "uncaughtException", message: err});
+	console.log(err);
+	logger.error({ label: "uncaughtException", message: err });
 });
 
 process.on("unhandledRejection", err => {
-	console.log(err)
-	logger.error({label: "unhandledRejection", message: err});
+	console.log(err);
+	logger.error({ label: "unhandledRejection", message: err });
 });
 
 // security configuretaion
@@ -65,7 +70,7 @@ auth(app);
 app.use(flash);
 
 // web routing
-app.use("/", require(join(BASE_DIR, "routes", "web")));
+app.use(require(join(BASE_DIR, "routes/web")));
 
 // 404 page not found
 app.use((req, res) =>
@@ -77,8 +82,12 @@ app.use((req, res) =>
 
 // error handle
 app.use((err, req, res, next) => {
-	console.log(err);
-	logger.error(err);
+	if (err instanceof Object) {
+		logger.error({ label: err.name, message: err.info });
+	} else {
+		logger.error({ label: "web error", message: err.info });
+	}
+	console.log(err)
 	return res.status(500).render("error-page/template", {
 		status: 500,
 		appName: process.env.APP_NAME

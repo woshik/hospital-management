@@ -1,0 +1,151 @@
+<div class="card card-success">
+    <div class="card-header">
+        <h3 class="card-title">Select Section</h3>
+    </div>
+    <form method="POST" action="<%=addRoleURL%>" id="hospitalRoleForm">
+
+        <div class="card-body">
+            <div id="hospital-role-message"></div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label class="col-form-label" for="roleName">Role Name:</label>
+                        <input type="text" class="form-control" id="roleName" name="roleName" placeholder="Role Name" required autocomplete="off" autofocus>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" for="inputSuccess">Permissions:</label>
+            </div>
+
+            <!-- User Management -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">User Management</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="viewUser" name="viewUser">
+                                    <label for="viewUser"></label>View User
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="addUser" name="addUser">
+                                    <label for="addUser"></label>Add User
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="updateUser" name="updateUser">
+                                    <label for="updateUser"></label>Update User
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="deleteUser" name="deleteUser">
+                                    <label for="deleteUser"></label>Delete User
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- User Management -->
+
+            <hr>
+
+            <!-- Role Management -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">Role Management</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="viewRole" name="viewRole">
+                                    <label for="viewRole"></label>View Role
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="addRole" name="addRole">
+                                    <label for="addRole"></label>Add Role
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="updateRole" name="updateRole">
+                                    <label for="updateRole"></label>Update Role
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <div class="icheck-primary d-inline">
+                                    <input type="checkbox" id="deleteRole" name="deleteRole">
+                                    <label for="deleteRole"></label>Delete Role
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Role Management -->
+
+            <hr>
+
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" id="updateInfoBtn">Submit</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+        </div>
+
+    </form>
+</div>

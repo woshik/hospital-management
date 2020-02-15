@@ -27,17 +27,17 @@
 						<%=title%>
 					</span>
 					<% if (flashMessage) { %>
-					<div class="alert alert-info" id="flashMessage" role="alert" style="width: 100%;">
+					<div class="alert alert-info" id="flashMessage" role="alert" style="width: 100%;text-align: center;">
 						<%=flashMessage%>
 					</div>
 					<% } %>
-					<div id="message" style="width: 100%"></div>
-					<div class="wrap-input100 rs1-wrap-input100 m-b-20" data-validate="Type email">
-						<input id="first-name" class="input100" type="text" name="email" placeholder="Email"
+					<div id="message" style="width: 100%;text-align: center;"></div>
+					<div class="wrap-input100 rs1-wrap-input100 m-b-20">
+						<input class="input100" type="text" name="username" placeholder="Username"
 							autocomplete="off" />
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 rs2-wrap-input100 m-b-20" data-validate="Type password">
+					<div class="wrap-input100 rs2-wrap-input100 m-b-20">
 						<input class="input100" type="password" name="password" placeholder="Password"
 							autocomplete="off" />
 						<span class="focus-input100"></span>
@@ -50,7 +50,7 @@
 				</form>
 			</div>
 			<div class="copyright py-xl-3 py-2 text-center">
-				<a href="<%=info.websiteURL%>" target="_blank" rel="noreferrer" alt="<%=info.appName%>"><%=info.appName%></a> | <p>Copyright &copy; <%=info.currentYear%> All Rights Reserved.</p>
+				<a href="<%=info.websiteURL%>" target="_blank" rel="noreferrer" alt="<%=info.appName%>"><%=info.appName%></a><p>Copyright &copy; <%=info.currentYear%> All Rights Reserved</p>
 			</div>
 		</div>
 	</div>
