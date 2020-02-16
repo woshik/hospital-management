@@ -1,15 +1,153 @@
 "use strict";
 
-const { isAuthenticated, CanNotAccessAfterLogin } = require(join(
-	BASE_DIR,
-	"core",
-	"middlewares"
-));
+const {
+	isAuthenticated,
+	CanNotAccessAfterLogin,
+	havePermissionToAccess
+} = require(join(BASE_DIR, "core", "middlewares"));
 
 module.exports = {
+	//===========================================================================================================================================//
+	//===========================================================================================================================================//
+	//=========================================================== User Management ===============================================================//
+	viewUser: {
+		url: "/hospital/users",
+		controller: "UserManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 1
+	},
+
+	getUserData: {
+		url: "/hospital/users/get",
+		controller: "UserManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 2
+	},
+
+	addUserView: {
+		url: "/hospital/users/add",
+		controller: "UserManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 3
+	},
+
+	addUser: {
+		url: "/hospital/users/add",
+		controller: "UserManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 4
+	},
+
+	updateUserView: {
+		url: "/hospital/users/update",
+		controller: "UserManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 5
+	},
+
+	updateUser: {
+		url: "/hospital/users/update",
+		controller: "UserManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 6
+	},
+
+	removeUser: {
+		url: "/hospital/users/delete",
+		controller: "UserManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 7
+	},
+
+	//=========================================================== User Management ===============================================================//
+	//===========================================================================================================================================//
+	//===========================================================================================================================================//
+	//=========================================================== Role Management ===============================================================//
+
+	viewRole: {
+		url: "/hospital/role",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 8
+	},
+
+	getRoleData: {
+		url: "/hospital/role/get",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 9
+	},
+
+	addRoleView: {
+		url: "/hospital/role/add",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 10
+	},
+
+	addRole: {
+		url: "/hospital/role/add",
+		controller: "RoleManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 11
+	},
+
+	updateRoleView: {
+		url: "/hospital/role/update",
+		controller: "RoleManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 12
+	},
+
+	updateRole: {
+		url: "/hospital/role/update",
+		controller: "RoleManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 13
+	},
+
+	removeRole: {
+		url: "/hospital/role/delete",
+		controller: "RoleManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 14
+	},
+
+	//=========================================================== Role Management ===============================================================//
+	//===========================================================================================================================================//
+	//===========================================================================================================================================//
+
+	//======================================================== basic Route ==================================================================//
+	//======================================================================================================================================//
 	//=====================================================================================================================================//
-	//=========================================================== Hospital ===============================================================//
-	//===================================================================================================================================//
 
 	loginView: {
 		url: "/hospital/login",
@@ -57,121 +195,5 @@ module.exports = {
 		method: "post",
 		middleware: [isAuthenticated],
 		path: "hospital"
-	},
-
-	//===========================================================================================================================================//
-	//===========================================================================================================================================//
-	//=========================================================== User Management ===============================================================//
-	viewUser: {
-		url: "/hospital/users",
-		controller: "UserManagement",
-		method: "get",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	addUserView: {
-		url: "/hospital/users/add",
-		controller: "UserManagement",
-		method: "get",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	addUser: {
-		url: "/hospital/users",
-		controller: "UserManagement",
-		method: "post",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	updateUserView: {
-		url: "/hospital/users/update",
-		controller: "UserManagement",
-		method: "get",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	updateUser: {
-		url: "/hospital/users",
-		controller: "UserManagement",
-		method: "put",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	deleteUser: {
-		url: "/hospital/users",
-		controller: "UserManagement",
-		method: "delete",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	//=========================================================== User Management ===============================================================//
-	//===========================================================================================================================================//
-	//===========================================================================================================================================//
-	//=========================================================== Role Management ===============================================================//
-
-	viewRole: {
-		url: "/hospital/role",
-		controller: "RoleManagement",
-		method: "get",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	viewRoleData: {
-		url: "/hospital/role/data",
-		controller: "RoleManagement",
-		method: "get",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	addRoleView: {
-		url: "/hospital/role/add",
-		controller: "RoleManagement",
-		method: "get",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	addRole: {
-		url: "/hospital/role",
-		controller: "RoleManagement",
-		method: "post",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	updateRoleView: {
-		url: "/hospital/role/update",
-		controller: "RoleManagement",
-		method: "get",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	updateRole: {
-		url: "/hospital/role",
-		controller: "RoleManagement",
-		method: "put",
-		middleware: [isAuthenticated],
-		path: "hospital"
-	},
-
-	removeRole: {
-		url: "/hospital/role",
-		controller: "RoleManagement",
-		method: "delete",
-		middleware: [isAuthenticated],
-		path: "hospital"
 	}
-
-	//=========================================================== Role Management ===============================================================//
-	//===========================================================================================================================================//
-	//===========================================================================================================================================//
 };

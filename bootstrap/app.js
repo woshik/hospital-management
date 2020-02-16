@@ -7,23 +7,19 @@ const helmet = require("helmet");
 const csrf = require("csurf");
 
 // import module from project
-const { mongoClient } = require(join(BASE_DIR, "db/database"));
+const util = require(join(BASE_DIR, "core/util"));
+const database = require(join(BASE_DIR, "db/database"))
+
+const mongoClient = database.mongoClient;
 const { sessionStore } = require(join(BASE_DIR, "core/sessionStore"));
-const { logger } = require(join(BASE_DIR, "core/util"));
+const logger = util.logger;
 const auth = require(join(BASE_DIR, "core/auth"));
 const { flash } = require(join(BASE_DIR, "core/middlewares"));
 
 // global declaration
-global.appInfo = {
-	appName: process.env.APP_NAME,
-	currentYear: new Date().getUTCFullYear(),
-	websiteURL: process.env.WEBSITE_URL
-};
-global.web = require(join(BASE_DIR, "urlconf/webRule"));
-global.sideBar = require(join(BASE_DIR, "urlconf/sideBar"));
-global.Joi = require("@hapi/joi");
-global.fromErrorMessage = require(join(BASE_DIR, "core/util")).fromErrorMessage;
-global.getDB = require(join(BASE_DIR, "db/database")).getDB;
+global.fromErrorMessage = util.fromErrorMessage;
+global.getDB = database.getDB;
+global.randerForDashBoard = util.randerForDashBoard;
 
 // calling express function
 const app = express();
@@ -76,22 +72,33 @@ app.use(require(join(BASE_DIR, "routes/web")));
 app.use((req, res) =>
 	res.status(404).render("error-page/template", {
 		status: 404,
-		appName: process.env.APP_NAME
+		appName: appInfo.appName,
 	})
 );
 
 // error handle
 app.use((err, req, res, next) => {
+	if (app.get('env') === "development") {
+		console.log(err);
+	}
+
 	if (err instanceof Object) {
 		logger.error({ label: err.name, message: err.info });
 	} else {
 		logger.error({ label: "web error", message: err.info });
 	}
-	console.log(err)
-	return res.status(500).render("error-page/template", {
-		status: 500,
-		appName: process.env.APP_NAME
-	});
+	
+	if (req.xhr) {
+		return res.status(200).json({
+			success: false,
+			info: "Some error occurred. Please try again later."
+		});
+	} else {
+		return res.status(500).render("error-page/template", {
+			status: 500,
+			appName: appInfo.appName
+		});
+	}
 });
 
 // start mongodb and then runing the app on defined port number

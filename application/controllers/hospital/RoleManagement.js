@@ -1,38 +1,45 @@
 "use strict";
 
-const { addRole, getRoleData } = require(join(
-	MODEL_DIR,
-	"hospital/Model_Role"
-));
+const {
+	addRole,
+	getRoleListData,
+	getRoleData,
+	updateRole,
+	removeRole
+} = require(join(MODEL_DIR, "hospital/Model_Role"));
 
 exports.viewRole = function(req, res, next) {
-	res.render("hospital/base-template", {
-		info: appInfo,
+	randerForDashBoard(req, res, {
 		title: "Roles List",
 		layout: "role",
-		userData: req.user,
-		currentURL: req.url,
-		sidebar: sideBar.hospital,
-		csrfToken: req.csrfToken(),
-		roleDataURL: web.viewRoleData.url,
-		logoutURL: web.logout.url
+		roleDataURL: web.getRoleData.url
 	});
 };
 
-exports.viewRoleData = function(req, res, next) {
-	getRoleData(req.query)
+exports.getRoleData = function(req, res, next) {
+	getRoleListData(req.query)
 		.then(roleList => {
 			let response = [];
 			roleList.list.map(role => {
 				let actionBtn = "";
 
-				if (role.permissions.updateRole) {
-					actionBtn = ``;
+				if (
+					(req.user.role instanceof Array &&
+						req.user.role.includes(web.updateRoleView.permitNumber)) ||
+					req.user.role === 1
+				) {
+					actionBtn += `<a href="${web.updateRoleView.url}?id=${role._id}" class="btn bg-gradient-primary mr-1">
+									<i class="fas fa-edit color-while"></i>
+								</a>`;
 				}
 
-				if (role.permissions.deleteRole) {
-					actionBtn = `<a href="javascript:void(0)" class="btn btn-warning btn-icon" type="button" data-toggle="modal" data-target="#appStatusChangeModal" title="Deactivate Your App" onclick="appStatusChange('${appData._id}')" data-backdrop="static">
-									<i class="fas fa-toggle-off"></i>
+				if (
+					(req.user.role instanceof Array &&
+						req.user.role.includes(web.removeRole.permitNumber)) ||
+					req.user.role === 1
+				) {
+					actionBtn += `<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteRoleModal" data-backdrop="static" onclick="deleteTigger('${web.removeRole.url}?id=${role._id}')">
+									<i class="fas fa-trash-alt color-while"></i>
 								</a>`;
 				}
 
@@ -45,20 +52,14 @@ exports.viewRoleData = function(req, res, next) {
 				recordsFiltered: roleList.recordsFiltered
 			});
 		})
-		.catch(err => next({ name: "viewRoleData", info: err }));
+		.catch(err => next({ name: "getRoleData", info: err }));
 };
 
 exports.addRoleView = function(req, res, next) {
-	res.render("hospital/base-template", {
-		info: appInfo,
+	randerForDashBoard(req, res, {
 		title: "Add Role",
 		layout: "role-form",
-		userData: req.user,
-		currentURL: req.url,
-		sidebar: sideBar.hospital,
-		csrfToken: req.csrfToken(),
-		addRoleURL: web.addRole.url,
-		logoutURL: web.logout.url
+		roleURL: web.addRole.url
 	});
 };
 
@@ -78,44 +79,93 @@ exports.addRole = function(req, res, next) {
 	if (validateResult.error) {
 		return res.json({
 			success: false,
-			message: fromErrorMessage(validateResult.error.details[0])
+			info: fromErrorMessage(validateResult.error.details[0])
 		});
 	}
 
-	addRole(validateResult.value.roleName, req.body)
+	delete req.body.roleName;
+	let permissions = [];
+	Object.entries(req.body).map(([name, number]) => {
+		number.split(",").map(value => permissions.push(parseInt(value)));
+	});
+
+	addRole(validateResult.value.roleName, permissions)
 		.then(info => res.json(info))
 		.catch(err => next({ name: "addRole", info: err }));
 };
 
 exports.updateRoleView = function(req, res, next) {
-	res.render("hospital/base-template", {
-		info: appInfo,
-		title: "Add Role",
-		layout: "role",
-		currentURL: req.url,
-		sidebar: sideBar.hospital,
-		csrfToken: req.csrfToken()
-	});
+	getRoleData(req.query.id)
+		.then(data => {
+			if (data) {
+				randerForDashBoard(req, res, {
+					title: "Update Role",
+					layout: "role-form",
+					roleId: req.query.id,
+					roleName: data.name,
+					permissions: data.permissions,
+					roleURL: web.updateRole.url
+				});
+			} else {
+				next();
+			}
+		})
+		.catch(error => next({ name: "updateRoleView", info: error }));
 };
 
 exports.updateRole = function(req, res, next) {
-	res.render("hospital/base-template", {
-		info: appInfo,
-		title: "Add Role",
-		layout: "role",
-		currentURL: req.url,
-		sidebar: sideBar.hospital,
-		csrfToken: req.csrfToken()
+	const schema = Joi.object({
+		id: Joi.string()
+			.trim()
+			.required()
+			.label("Role ID")
 	});
+
+	const validateResult = schema.validate({
+		id: req.body.id
+	});
+
+	if (validateResult.error) {
+		return res.json({
+			success: false,
+			info: fromErrorMessage(validateResult.error.details[0])
+		});
+	}
+
+	let permissions = [];
+
+	delete req.body.id;
+	delete req.body.roleName;
+
+	Object.entries(req.body).map(([name, number]) => {
+		number.split(",").map(value => permissions.push(parseInt(value)));
+	});
+
+	updateRole(validateResult.value.id, permissions)
+		.then(info => res.json(info))
+		.catch(err => next({ name: "updateRole", info: err }));
 };
 
 exports.removeRole = function(req, res, next) {
-	res.render("hospital/base-template", {
-		info: appInfo,
-		title: "Add Role",
-		layout: "role",
-		currentURL: req.url,
-		sidebar: sideBar.hospital,
-		csrfToken: req.csrfToken()
+	const schema = Joi.object({
+		id: Joi.string()
+			.trim()
+			.required()
+			.label("Role ID")
 	});
+
+	const validateResult = schema.validate({
+		id: req.query.id
+	});
+
+	if (validateResult.error) {
+		return res.json({
+			success: false,
+			info: fromErrorMessage(validateResult.error.details[0])
+		});
+	}
+
+	removeRole(validateResult.value.id)
+		.then(info => res.json(info))
+		.catch(err => next({ name: "removeRole", info: err }));
 };

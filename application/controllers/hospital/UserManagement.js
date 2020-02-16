@@ -1,29 +1,30 @@
 "use strict";
 
+const {
+	addUser,
+	getUserListData,
+	getUserData,
+	updateUser,
+	removeUser
+} = require(join(MODEL_DIR, "hospital/Model_User"));
+
 exports.viewUser = function(req, res, next) {
-	res.render("hospital/base-template", {
-		info: appInfo,
-		title: "Roles",
-		layout: "role",
-		currentURL: req.url,
-		sidebar: sideBar.hospital,
-		csrfToken: req.csrfToken()
+	randerForDashBoard(req, res, {
+		title: "Users List",
+		layout: "user",
+		roleDataURL: web.getUserData.url
 	});
 };
 
-exports.viewRoleData = function (req, res, next) {
+exports.getUserData = function (req, res, next) {
 	
 }
 
 exports.addUserView = function(req, res, next) {
-	res.render("hospital/base-template", {
-		info: appInfo,
-		title: "Add Role",
-		layout: "role-form",
-		currentURL: req.url,
-		sidebar: sideBar.hospital,
-		csrfToken: req.csrfToken(),
-		addRoleURL: web.addRole.url
+	randerForDashBoard(req, res, {
+		title: "Add User",
+		layout: "user-form",
+		userURL: web.addUser.url
 	});
 };
 
@@ -74,7 +75,7 @@ exports.updateUser = function(req, res, next) {
 	});
 };
 
-exports.deleteUser = function(req, res, next) {
+exports.removeUser = function(req, res, next) {
 	res.render("hospital/base-template", {
 		info: appInfo,
 		title: "Add Role",

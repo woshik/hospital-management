@@ -4,8 +4,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="this a pro app server">
-        <meta name="keywords" content="appgenbd, app server, pro app server, bdapp">
+        <meta name="description" content="<%=status%> page">
+        <meta name="keywords" content="hospital, clinic, diagnostic" />
         <meta name="author" content="Hyper Queue">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><%=status%> Page || <%=appName%></title>
@@ -22,12 +22,11 @@
                 <div class="notfound-404">
                     <h1>Oops!</h1>
                     <%if(status === 404){%>
-                    <h2><%=status%> - The Page can't be found</h2>
+                    <h2><%=status%> - Not Found</h2>
                     <%}else{%>
                     <h2><%=status%> - Internal Server Error</h2>
                     <%}%>
                 </div>
-            <a href="/" rel="follow">Go TO Homepage</a>
         </div>
     </div>
 </body>

@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <title><%=title%> || <%=info.appName%></title>
+    <title><%=pageData.title%> || <%=info.appName%></title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="<%=title%> page of <%=info.appName%>." />
+    <meta name="description" content="<%=pageData.title%> page of <%=info.appName%>." />
     <meta name="keywords" content="hospital, clinic, diagnostic" />
     <meta name="author" content="Hyper Queue" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/dashboard/css/all.min.css" />
     <link rel="stylesheet" href="/dashboard/css/OverlayScrollbars.min.css" />
     <link rel="stylesheet" href="/dashboard/css/adminlte.min.css" />
-    <%- include('templates/'+layout+'/style') %>
+    <%- include('templates/'+pageData.layout+'/style') %>
     <link rel="stylesheet" href="/css/custom.css" />
 </head>
 
@@ -63,7 +63,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="<%=dashBoardURL%>" class="brand-link">
                 <img src="/images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8" />
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -81,7 +81,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark"><%=title%></h1>
+                            <h1 class="m-0 text-dark"><%=pageData.title%></h1>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
 
             <section class="content">
                 <div class="container-fluid">
-                    <%- include('templates/'+layout+'/content') %>
+                    <%- include('templates/'+pageData.layout+'/content') %>
                 </div>
             </section>
         </div>
@@ -110,8 +110,8 @@
     <script src="/common/js/bootstrap.min.js"></script>
     <script src="/dashboard/js/jquery.overlayScrollbars.min.js"></script>
     <script src="/dashboard/js/adminlte.js"></script>
-
-    <%- include('templates/'+layout+'/script') %>
+    <script src="/js/app.js"></script>
+    <%- include('templates/'+pageData.layout+'/script') %>
 </body>
 
 </html>

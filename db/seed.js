@@ -10,11 +10,12 @@ MongoClient.connect("mongodb://localhost:27017/", {
 			.db("hospital")
 			.collection("users")
 			.insertOne({
-				email: "admin@admin.com",
-				password: await hash("123456", await genSalt(10))
+				username: "admin",
+				password: await hash("123456", await genSalt(10)),
+				role: 1
 			});
 
-		console.log("username: admin@admin.com");
+		console.log("username: admin");
 		console.log("password: 123456");
 
 		client.close();

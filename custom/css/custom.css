@@ -7,39 +7,43 @@
 
 .main-header .navbar-nav .nav-item .dropdown-menu .profile-head {
 	height: 110px;
-    padding: 10px;
+	padding: 10px;
 	text-align: center;
 	background-color: #3c8dbc;
 }
 
 .main-header .navbar-nav .nav-item .dropdown-menu .profile-footer {
 	background-color: #f9f9f9;
-    padding: 10px;
+	padding: 10px;
 }
 .main-header .navbar-nav .nav-item .dropdown-menu .profile-head > p {
-    z-index: 5;
-    color: #fff;
-    color: rgba(255,255,255,0.8);
-    font-size: 17px;
-    margin-top: 20px;
+	z-index: 5;
+	color: #fff;
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 17px;
+	margin-top: 20px;
 }
 
 .pull-left {
-    float: left!important;
+	float: left !important;
 }
 
 .pull-right {
-    float: right!important;
+	float: right !important;
 }
 
 .copyright a {
-    color: #c7c7c7;
+	color: #c7c7c7;
 }
 
 .copyright a:hover {
-    color: #00ad5f;
+	color: #00ad5f;
 }
 
 .copyright p {
-    cursor: default;
+	cursor: default;
+}
+
+.color-while {
+	color: #fff;
 }

@@ -46,24 +46,38 @@ exports.hospital = (username, password) => {
 exports.login = id => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			let userData = await getDB()
-				.collection("users")
-				.findOne(
-					{
-						_id: ObjectId(id)
-					},
-					{
-						projection: {
-							f_name: 1,
-							l_name: 1,
-							username: 1,
-							email: 1,
-							role: 1
-						}
+			let db = await getDB();
+			let userData = await db.collection("users").findOne(
+				{
+					_id: ObjectId(id)
+				},
+				{
+					projection: {
+						f_name: 1,
+						l_name: 1,
+						username: 1,
+						email: 1,
+						role: 1
 					}
-				);
+				}
+			);
 
 			if (userData) {
+				if (!(userData.role === 1)) {
+					let role = await db.collection("user-role").findOne(
+						{
+							_id: userData.role
+						},
+						{
+							projection: {
+								_id: 0,
+								permissions: 1
+							}
+						}
+					);
+					userData.role = role ? role.permissions : [];
+				}
+
 				return resolve(userData);
 			} else {
 				return resolve(null, false);
