@@ -12,9 +12,7 @@ const {
 exports.viewRole = function(req, res, next) {
 	randerForDashBoard(req, res, {
 		title: "Roles List",
-		layout: "role",
-		roleDataURL: web.getRoleData.url,
-		addRoleURL: web.addRoleView.url
+		layout: "role"
 	});
 };
 
@@ -59,8 +57,7 @@ exports.getRoleData = function(req, res, next) {
 exports.addRoleView = function(req, res, next) {
 	randerForDashBoard(req, res, {
 		title: "Add Role",
-		layout: "role-form",
-		roleURL: web.addRole.url
+		layout: "role-form"
 	});
 };
 

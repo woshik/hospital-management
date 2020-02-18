@@ -3,7 +3,7 @@
         <h3 class="card-title">Fillup User Details</h3>
     </div>
 
-    <form method="POST" action="<%=pageData.userURL%>" id="submitOnServer">
+    <form method="POST" action="<%=web.addUser.url%>" id="submitOnServer">
         <div class="card-body">
             <div id="server-message"></div>
             <div class="row">
@@ -64,7 +64,7 @@
 
             <div class="form-group">
                 <label>Select Role</label>
-                <select class="form-control" id="selectionDataFromServer" style="width: 100%;" name="role" data-url="<%=pageData.roleDataURL%>"></select>
+                <select class="form-control" id="selectionDataFromServer" style="width: 100%;" name="role" data-url="<%=web.getRoleDataForUser.url%>"></select>
             </div>
 
             <div class="row">

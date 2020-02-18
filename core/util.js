@@ -3,7 +3,6 @@
 const winstonDailyRotateFile = require("winston-daily-rotate-file");
 const { createLogger, format } = require("winston");
 const bcrypt = require("bcryptjs");
-const sideBar = require(join(BASE_DIR, "urlconf/sideBar"))
 
 exports.fromErrorMessage = error => {
 	switch (error.type) {
@@ -73,10 +72,8 @@ exports.randerForDashBoard = (req, res, data) => {
 		info: appInfo,
 		userData: req.user,
 		currentURL: req.url,
-		sidebar: sideBar.hospital,
 		csrfToken: req.csrfToken(),
-		dashBoardURL: web.dashboardView.url,
-		logoutURL: web.logout.url,
+		web: web,
 		pageData: data
 	})
 }

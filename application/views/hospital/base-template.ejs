@@ -46,7 +46,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <form method="POST" action="<%=logoutURL%>">
+                                <form method="POST" action="<%=web.logout.url%>">
                                     <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                                     <button type="submit" class="btn btn-default btn-flat">Logout</button>
                                 </form>
@@ -63,7 +63,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="<%=dashBoardURL%>" class="brand-link">
+            <a href="<%=web.dashboardView.url%>" class="brand-link">
                 <img src="/images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8" />
                 <span class="brand-text font-weight-light">Short Name</span>

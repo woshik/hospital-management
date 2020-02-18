@@ -11,9 +11,7 @@ const {
 exports.viewUser = function(req, res, next) {
 	randerForDashBoard(req, res, {
 		title: "Users List",
-		layout: "user",
-		userDataURL: web.getUserData.url,
-		addUserURL: web.addUserView.url
+		layout: "user"
 	});
 };
 
@@ -72,9 +70,7 @@ exports.getUserData = function(req, res, next) {
 exports.addUserView = function(req, res, next) {
 	randerForDashBoard(req, res, {
 		title: "Add User",
-		layout: "user-form",
-		userURL: web.addUser.url,
-		roleDataURL: web.getRoleDataForUser.url
+		layout: "user-form"
 	});
 };
 

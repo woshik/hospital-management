@@ -153,6 +153,75 @@ module.exports = {
 	//=========================================================== Role Management ===============================================================//
 	//===========================================================================================================================================//
 	//===========================================================================================================================================//
+	//===========================================================================================================================================//
+	//=========================================================== Patient Management ============================================================//
+
+	viewPatient: {
+		url: "/hospital/patient",
+		controller: "PatientManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 8
+	},
+
+	getPatientData: {
+		url: "/hospital/patient/get",
+		controller: "PatientManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 9
+	},
+
+	addPatientView: {
+		url: "/hospital/patient/add",
+		controller: "PatientManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 10
+	},
+
+	addPatient: {
+		url: "/hospital/patient/add",
+		controller: "PatientManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 11
+	},
+
+	updatePatientView: {
+		url: "/hospital/patient/update",
+		controller: "PatientManagement",
+		method: "get",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 12
+	},
+
+	updatePatient: {
+		url: "/hospital/patient/update",
+		controller: "PatientManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 13
+	},
+
+	removePatient: {
+		url: "/hospital/patient/delete",
+		controller: "PatientManagement",
+		method: "post",
+		middleware: [isAuthenticated, havePermissionToAccess],
+		path: "hospital",
+		permitNumber: 14
+	},
+
+	//=========================================================== Patient Management ===============================================================//
+	//===========================================================================================================================================//
+	//===========================================================================================================================================//
 
 	//======================================================== basic Route ==================================================================//
 	//======================================================================================================================================//

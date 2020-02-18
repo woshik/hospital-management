@@ -4,7 +4,7 @@
     </div>
 
     <div class="card-body">
-        <a href="<%=pageData.addUserURL%>" class="btn btn-primary pull-right mb-4"><i class="fas fa-plus-circle mr-1"></i>Add User</a>
+        <a href="<%=web.addUserView.url%>" class="btn btn-primary pull-right mb-4"><i class="fas fa-plus-circle mr-1"></i>Add User</a>
         <div class="clearfix"></div>
         <div id="role-message"></div>
         <div class="table-responsive">
@@ -54,5 +54,5 @@
 </div>
 
 <script>
-    var getDataFromDataBase = "<%=pageData.userDataURL%>";
+    var getDataFromDataBase = "<%=web.getUserData.url%>";
 </script>
