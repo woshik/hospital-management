@@ -4,9 +4,10 @@
     </div>
 
     <div class="card-body">
+        <a href="<%=pageData.addRoleURL%>" class="btn btn-primary pull-right mb-4"><i class="fas fa-plus-circle mr-1"></i>Add Role</a>
         <div id="server-message"></div>
         <div class="table-responsive">
-            <table id="role-list" class="table table-bordered table-hover table-striped" style="width:100%">
+            <table id="database-data-list" class="table table-bordered table-hover table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">Role Name</th>
@@ -46,5 +47,5 @@
 </div>
 
 <script>
-    var roleDataURL = "<%=pageData.roleDataURL%>";
+    var getDataFromDataBase = "<%=pageData.roleDataURL%>";
 </script>

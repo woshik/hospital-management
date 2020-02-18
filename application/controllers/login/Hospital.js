@@ -17,10 +17,11 @@ exports.login = (req, res, next) => {
 		username: Joi.string()
 			.trim()
 			.required()
+			.lowercase()
 			.label("Username"),
 		password: Joi.string()
 			.trim()
-			.min(5)
+			.min(6)
 			.max(50)
 			.label("Password")
 	});

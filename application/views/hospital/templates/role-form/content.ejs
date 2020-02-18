@@ -2,7 +2,7 @@
     <div class="card-header">
         <h3 class="card-title">Select <%=pageData.roleName%> Permissions</h3>
     </div>
-    <form method="POST" action="<%=pageData.roleURL%>" id="addORUpdateToDataBase">
+    <form method="POST" action="<%=pageData.roleURL%>" id="submitOnServer">
 
         <div class="card-body">
             <div id="server-message"></div>
@@ -42,7 +42,7 @@
                             <div class="col-sm-4"></div>
                             <div class="col-sm-4">
                                 <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="addUser" name="addUser" value="3,4" <% if(pageData.permissions && pageData.permissions.includes(3)) {%>checked<% } %>>
+                                    <input type="checkbox" id="addUser" name="addUser" value="3,4,15" <% if(pageData.permissions && pageData.permissions.includes(3)) {%>checked<% } %>>
                                     <label for="addUser"></label>Add User
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="col-sm-4"></div>
                             <div class="col-sm-4">
                                 <div class="icheck-primary d-inline">
-                                    <input type="checkbox" id="updateUser" name="updateUser" value="5,6" <% if(pageData.permissions && pageData.permissions.includes(5)) {%>checked<% } %>>
+                                    <input type="checkbox" id="updateUser" name="updateUser" value="5,6,15" <% if(pageData.permissions && pageData.permissions.includes(5)) {%>checked<% } %>>
                                     <label for="updateUser"></label>Update User
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
         </div>
 
         <%if(pageData.roleId){%>
-            <input type="hidden" name="id" value="<%=pageData.roleId%>">
+        <input type="hidden" name="id" value="<%=pageData.roleId%>">
         <%}%>
 
         <div class="card-footer">

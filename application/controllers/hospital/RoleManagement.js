@@ -5,22 +5,23 @@ const {
 	getRoleListData,
 	getRoleData,
 	updateRole,
-	removeRole
+	removeRole,
+	getRolesData
 } = require(join(MODEL_DIR, "hospital/Model_Role"));
 
 exports.viewRole = function(req, res, next) {
 	randerForDashBoard(req, res, {
 		title: "Roles List",
 		layout: "role",
-		roleDataURL: web.getRoleData.url
+		roleDataURL: web.getRoleData.url,
+		addRoleURL: web.addRoleView.url
 	});
 };
 
 exports.getRoleData = function(req, res, next) {
 	getRoleListData(req.query)
 		.then(roleList => {
-			let response = [];
-			roleList.list.map(role => {
+			let response = roleList.list.map(role => {
 				let actionBtn = "";
 
 				if (
@@ -43,7 +44,7 @@ exports.getRoleData = function(req, res, next) {
 								</a>`;
 				}
 
-				response.push([role.name, actionBtn]);
+				return [role.name, actionBtn];
 			});
 
 			return res.json({
@@ -168,4 +169,17 @@ exports.removeRole = function(req, res, next) {
 	removeRole(validateResult.value.id)
 		.then(info => res.json(info))
 		.catch(err => next({ name: "removeRole", info: err }));
+};
+
+exports.getRoleDataForUser = function(req, res) {
+	getRolesData(req.query.search ? req.query.search : "").then(data =>
+		res.json(
+			data.map(role => {
+				return {
+					id: role._id,
+					text: role.name
+				};
+			})
+		)
+	);
 };

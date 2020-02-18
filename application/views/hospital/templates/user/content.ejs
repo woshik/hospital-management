@@ -1,22 +1,30 @@
 <div class="card card-success">
     <div class="card-header">
-        <h3 class="card-title">All Roles</h3>
+        <h3 class="card-title">All Users</h3>
     </div>
 
     <div class="card-body">
+        <a href="<%=pageData.addUserURL%>" class="btn btn-primary pull-right mb-4"><i class="fas fa-plus-circle mr-1"></i>Add User</a>
+        <div class="clearfix"></div>
         <div id="role-message"></div>
         <div class="table-responsive">
-            <table id="role-list" class="table table-bordered table-hover table-striped" style="width:100%">
+            <table id="database-data-list" class="table table-bordered table-hover table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">Role Name</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Acction</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th scope="col">Role Name</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Acction</th>
                     </tr>
                 </tfoot>
             </table>
@@ -35,7 +43,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Do you want to delete this role? Please click on confirm.</p>
+                <p>Do you want to delete this user? Please click on confirm.</p>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -46,5 +54,5 @@
 </div>
 
 <script>
-    var roleDataURL = "<%=pageData.roleDataURL%>";
+    var getDataFromDataBase = "<%=pageData.userDataURL%>";
 </script>

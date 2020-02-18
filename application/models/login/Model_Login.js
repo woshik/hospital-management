@@ -22,7 +22,7 @@ exports.hospital = (username, password) => {
 			if (!user) {
 				return resolve({
 					success: false,
-					info: "Your email address not registered."
+					info: "Your username not registered."
 				});
 			}
 

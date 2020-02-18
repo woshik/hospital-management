@@ -23,15 +23,23 @@ exports.addRole = (roleName, permissions) => {
 					info: "Role name already exist. Please change the name."
 				});
 			} else {
-				await userRole.insertOne({
+				let data = await userRole.insertOne({
 					name: roleName,
 					permissions: permissions
 				});
 
-				return resolve({
-					success: true,
-					info: "Successfully Role Added"
-				});
+				if (data.insertedCount) {
+					return resolve({
+						success: true,
+						info: "Successfully Role Added."
+					});
+				} else {
+					return resolve({
+						success: false,
+						info: "can not add role. Please try again later."
+					});
+				}
+				
 			}
 		} catch (error) {
 			return reject(error);
@@ -159,6 +167,35 @@ exports.removeRole = id => {
 			}
 		} catch (error) {
 			reject(error);
+		}
+	});
+};
+
+exports.getRolesData = (query) => {
+	return new Promise(async (resolve, reject) => {
+		console.log(query)
+		try {
+			return resolve(
+				await getDB()
+					.collection("user-role")
+					.find(
+						{
+							name: RegExp(`.*${query}.*`, "i")
+						},
+						{
+							limit: 5,
+							sort: {
+								name: 1
+							},
+							projection: {
+								permissions: 0
+							}
+						}
+					)
+					.toArray()
+			);
+		} catch (err) {
+			return resolve([]);
 		}
 	});
 };

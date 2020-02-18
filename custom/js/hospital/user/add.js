@@ -1,5 +1,6 @@
 "use strict";
 
 $(document).ready(function() {
-	addToDataBase();
+	app.submitOnServer();
+	app.selectionData();
 });

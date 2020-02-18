@@ -26,7 +26,7 @@ App.prototype.requestComplete = function(jqXHR, textStatus) {
 	}
 };
 
-App.prototype.addORUpdateRequestSuccess = function(res) {
+App.prototype.submitOnServerRequestSuccess = function(res) {
 	if (res.success) {
 		$("#server-message")
 			.html(
@@ -57,11 +57,11 @@ App.prototype.addORUpdateRequestSuccess = function(res) {
 	this.clearMessage("#server-message");
 };
 
-App.prototype.addORUpdateToDataBase = function(onSuccess) {
-	onSuccess = onSuccess ? onSuccess : this.addORUpdateRequestSuccess;
+App.prototype.submitOnServer = function(onSuccess) {
+	onSuccess = onSuccess ? onSuccess : this.submitOnServerRequestSuccess;
 	var self = this;
 	this.onSubmitButtonClick();
-	$("#addORUpdateToDataBase")
+	$("#submitOnServer")
 		.unbind("submit")
 		.bind("submit", function(e) {
 			$("#server-message").fadeOut(0);
@@ -118,7 +118,7 @@ App.prototype.deleteRequestSuccess = function(res) {
 					"</div>"
 			)
 			.fadeIn(1000);
-		roleList.ajax.reload(null, false);
+		this.dataTableDataList.ajax.reload(null, false);
 		$("#deleteRoleModal").modal("hide");
 	} else {
 		$("#server-message")
@@ -149,6 +149,52 @@ App.prototype.clearMessage = function(id) {
 	this.timeOut = setTimeout(function() {
 		$(id).fadeOut(1000);
 	}, 5000);
+};
+
+App.prototype.selectionData = function() {
+	var selectionId = $("#selectionDataFromServer");
+	selectionId.select2({
+		ajax: {
+			url: selectionId[0].dataset.url,
+			method: "get",
+			dataType: "json",
+			delay: 500,
+			data: function(params) {
+				return {
+					search: params.term
+				};
+			},
+			processResults: function(response) {
+				return {
+					results: response
+				};
+			},
+			cache: true
+		},
+		placeholder: "Select Role"
+	});
+};
+
+App.prototype.dataTable = function() {
+	this.dataTableDataList = $("#database-data-list").DataTable({
+		processing: true,
+		serverSide: true,
+		ajax: {
+			url: getDataFromDataBase,
+			type: "GET"
+		},
+		columnDefs: [
+			{
+				targets: [-1],
+				orderable: false
+			}
+		],
+		lengthMenu: [
+			[10, 25, 50, 75, 100, -1],
+			[10, 25, 50, 75, 100, "All"]
+		]
+	});
+	return this.dataTableDataList;
 };
 
 var app = new App();
