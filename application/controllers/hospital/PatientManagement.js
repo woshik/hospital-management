@@ -12,7 +12,7 @@ const {
 exports.viewPatient = function(req, res, next) {
 	randerForDashBoard(req, res, {
 		title: "Patients List",
-		layout: "patient",
+		layout: "patient"
 	});
 };
 
@@ -24,7 +24,9 @@ exports.getPatientData = function(req, res, next) {
 
 				if (
 					(req.user.Patient instanceof Array &&
-						req.user.Patient.includes(web.updatePatientView.permitNumber)) ||
+						req.user.Patient.includes(
+							web.updatePatientView.permitNumber
+						)) ||
 					req.user.Patient === 1
 				) {
 					actionBtn += `<a href="${web.updatePatientView.url}?id=${Patient._id}" class="btn bg-gradient-primary mr-1">
@@ -34,7 +36,9 @@ exports.getPatientData = function(req, res, next) {
 
 				if (
 					(req.user.Patient instanceof Array &&
-						req.user.Patient.includes(web.removePatient.permitNumber)) ||
+						req.user.Patient.includes(
+							web.removePatient.permitNumber
+						)) ||
 					req.user.Patient === 1
 				) {
 					actionBtn += `<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#deletePatientModal" data-backdrop="static" onclick="deleteTigger('${web.removePatient.url}?id=${Patient._id}')">
@@ -57,7 +61,7 @@ exports.getPatientData = function(req, res, next) {
 exports.addPatientView = function(req, res, next) {
 	randerForDashBoard(req, res, {
 		title: "Add Patient",
-		layout: "patient-form",
+		layout: "patient-form"
 	});
 };
 
@@ -144,6 +148,8 @@ exports.updatePatient = function(req, res, next) {
 		.catch(err => next({ name: "updatePatient", info: err }));
 };
 
+exports.patientDetailsView = function(req, res, next) {};
+
 exports.removePatient = function(req, res, next) {
 	const schema = Joi.object({
 		id: Joi.string()
@@ -168,15 +174,12 @@ exports.removePatient = function(req, res, next) {
 		.catch(err => next({ name: "removePatient", info: err }));
 };
 
-exports.getPatientDataForUser = function(req, res) {
-	getPatientsData(req.query.search ? req.query.search : "").then(data =>
-		res.json(
-			data.map(Patient => {
-				return {
-					id: Patient._id,
-					text: Patient.name
-				};
-			})
-		)
-	);
-};
+exports.admitPatientView = function(req, res, next) {};
+
+exports.admitPatient = function(req, res, next) {};
+
+exports.admitPatientListView = function(req, res, nex) {};
+
+exports.admitPatientList = function(req, res, next) {};
+
+exports.admitPatientDetailsView = function(req, res, next) {};

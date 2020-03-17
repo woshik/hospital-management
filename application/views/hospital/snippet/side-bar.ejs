@@ -47,7 +47,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item has-treeview <% if(currentURL === currentURL === web.viewPatient.url || currentURL === web.addPatientView.url) {%>menu-open<% } %>">
+            <li class="nav-item has-treeview <% if(currentURL === web.viewPatient.url || currentURL === web.addPatientView.url || currentURL === web.admitPatientView.url || currentURL === web.dailyAdmitPatientListView.url) {%>menu-open<% } %>">
                 <a href="#" class="nav-link" >
                     <i class="nav-icon fas fa-user-injured"></i>
                     <p>Patient Management</p>
@@ -70,18 +70,19 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="<%=web.addPatientView.url%>" class="nav-link <% if(currentURL === web.addPatientView.url) { %>active<% } %>">
+                        <a href="<%=web.admitPatientView.url%>" class="nav-link <% if(currentURL === web.admitPatientView.url) { %>active<% } %>">
                             <i class="nav-icon far fa-plus-square"></i>
                             <p>Admit Patient</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="<%=web.addPatientView.url%>" class="nav-link <% if(currentURL === web.addPatientView.url) { %>active<% } %>">
+                        <a href="<%=web.dailyAdmitPatientListView.url%>" class="nav-link <% if(currentURL === web.dailyAdmitPatientListView.url) { %>active<% } %>">
                             <i class="nav-icon fas fa-clipboard-list"></i>
-                            <p>Daily Admit Patient List</p>
+                            <p>Admit Patient List</p>
                         </a>
                     </li>
+
                 </ul>
             </li>
 
@@ -105,12 +106,7 @@
                             <p>Discharge Form</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="<%=web.addPatientView.url%>" class="nav-link <% if(currentURL === web.addPatientView.url) { %>active<% } %>">
-                            <i class="nav-icon fas fa-clipboard-list"></i>
-                            <p>Daily Discharge List</p>
-                        </a>
-                    </li>
+
                 </ul>
             </li>
 
@@ -190,13 +186,6 @@
                             <p>Add Expense</p>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="<%=web.addPatientView.url%>" class="nav-link <% if(currentURL === web.addPatientView.url) { %>active<% } %>">
-                            <i class="nav-icon fas fa-clipboard-list"></i>
-                            <p>Daily Expanse</p>
-                        </a>
-                    </li>
                 </ul>
             </li>
 
@@ -233,30 +222,6 @@
                         <a href="<%=web.addPatientView.url%>" class="nav-link <% if(currentURL === web.addPatientView.url) { %>active<% } %>">
                             <i class="nav-icon fas fa-user-tie"></i>
                             <p>Patient Discharge Report</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item has-treeview <% if(currentURL === currentURL === web.viewPatient.url || currentURL === web.addPatientView.url) {%>menu-open<% } %>">
-                <a href="#" class="nav-link" >
-                    <i class="nav-icon fas fa-cogs"></i>
-                    <p>Setting</p>
-                    <i class="right fas fa-angle-left"></i>
-                </a>
-
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="<%=web.viewPatient.url%>" class="nav-link <% if(currentURL === web.viewPatient.url) { %>active<% } %>">
-                            <i class="nav-icon fas fa-id-card-alt"></i>
-                            <p>Hospital Profile</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="<%=web.viewPatient.url%>" class="nav-link <% if(currentURL === web.viewPatient.url) { %>active<% } %>">
-                            <i class="nav-icon far fa-id-badge"></i>
-                            <p>User Profile</p>
                         </a>
                     </li>
                 </ul>
